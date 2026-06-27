@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, send_file
-from dotenv import load_dotenv
 import os
 from utils import (
     extract_text_from_pdf,
@@ -12,8 +11,6 @@ from utils import (
     match_resume_with_jd,
     analyze_resume_sections,
 )
-
-load_dotenv()
 
 app = Flask(__name__)
 latest_result = {}
