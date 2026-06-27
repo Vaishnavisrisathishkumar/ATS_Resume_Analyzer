@@ -4,3 +4,4 @@ reportlab
 matplotlib
 python-dotenv
 openai
+gunicorn

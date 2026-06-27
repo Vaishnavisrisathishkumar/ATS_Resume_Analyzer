@@ -6,15 +6,7 @@ import fitz
 import base64
 import io
 import matplotlib.pyplot as plt
-from openai import OpenAI
 import os
-from dotenv import load_dotenv
-load_dotenv()
-
-# ---------------- OpenAI ---------------- #
-
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
 # ---------------- Skill Database ---------------- #
 
 KEYWORDS = [
