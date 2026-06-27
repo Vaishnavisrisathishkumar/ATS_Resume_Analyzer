@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI ATS Resume Analyzer</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Hero Section -->
+    <div class="hero">
+
+        <div class="hero-badge">
+            AI Powered ATS Resume Analyzer
+        </div>
+
+        <h1>Analyze Your Resume 🚀</h1>
+
+        <p>
+            Upload your Resume and Job Description to get
+            ATS Score, Skill Match, AI Review and Improvement Suggestions.
+        </p>
+
+    </div>
+
+
+    <!-- Upload Card -->
+
+    <div class="card">
+
+        <div class="card-title">
+            📄 Upload Files
+        </div>
+
+        <form action="/analyze"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <!-- Resume -->
+
+            <div style="margin-bottom:25px;">
+
+                <label style="font-weight:700;">
+                    Upload Resume
+                </label>
+
+                <br><br>
+
+                <label class="file-btn">
+    📄 Choose Resume
+    <input type="file" name="resume" accept=".pdf,.txt" hidden>
+</label>
+
+                <p class="bar-hint">
+                    Supported: PDF, TXT
+                </p>
+
+            </div>
+
+
+            <!-- Job Description -->
+
+            <div style="margin-bottom:25px;">
+
+                <label style="font-weight:700;">
+                    Upload Job Description (Optional)
+                </label>
+
+                <br><br>
+
+                <label class="file-btn">
+    📄 Choose Job Description
+    <input type="file" name="job_description" accept=".pdf,.txt" hidden>
+</label>
+
+                <p class="bar-hint">
+                    Upload the company's Job Description to calculate ATS Match Score.
+                </p>
+
+            </div>
+
+
+            <!-- Submit -->
+
+            <button
+                type="submit"
+                class="back-link"
+                style="cursor:pointer;border:none;">
+
+                🔍 Analyze Resume
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- Features -->
+
+    <div class="card">
+
+        <div class="card-title">
+            ⭐ Features
+        </div>
+
+        <div class="checklist">
+
+            <div class="check-item">
+                <div class="check-icon ok">✓</div>
+                <span>ATS Resume Score</span>
+            </div>
+
+            <div class="check-item">
+                <div class="check-icon ok">✓</div>
+                <span>Resume Skill Detection</span>
+            </div>
+
+            <div class="check-item">
+                <div class="check-icon ok">✓</div>
+                <span>AI Resume Review</span>
+            </div>
+
+            <div class="check-item">
+                <div class="check-icon ok">✓</div>
+                <span>Job Description Match Analysis</span>
+            </div>
+
+            <div class="check-item">
+                <div class="check-icon ok">✓</div>
+                <span>Missing Skills Detection</span>
+            </div>
+
+            <div class="check-item">
+                <div class="check-icon ok">✓</div>
+                <span>Keyword Density Graph</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

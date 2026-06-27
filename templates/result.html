@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Resume Analysis Report</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Hero -->
+
+    <div class="hero">
+
+        <div class="hero-badge">
+            Analysis Complete
+        </div>
+
+        <h1>ATS Resume Report 📊</h1>
+
+        <p>
+            AI Powered Resume Analysis
+        </p>
+
+    </div>
+
+
+    <!-- Metrics -->
+
+    <div class="card">
+
+        <div class="card-title">
+            📈 Resume Summary
+        </div>
+
+        <div class="metrics">
+
+            <div class="metric">
+
+                <div class="metric-label">
+                    ATS Score
+                </div>
+
+                <div class="metric-value
+                    {% if score >=80 %}
+                        green
+                    {% elif score >=60 %}
+                        yellow
+                    {% else %}
+                        red
+                    {% endif %}
+                ">
+                    {{ score }}/100
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-label">
+                    Predicted Role
+                </div>
+
+                <div class="role-tag">
+                    {{ role }}
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-label">
+                    Skills Found
+                </div>
+
+                <div class="metric-value blue">
+                    {{ skills|length }}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ATS Match -->
+
+    {% if match_percentage is not none %}
+
+    <div class="card">
+
+        <div class="card-title">
+            🎯 Resume vs Job Description
+        </div>
+
+        <div class="metric-value blue">
+
+            {{ match_percentage }}%
+
+        </div>
+
+        <br>
+
+        <div class="progress-track">
+
+            <div
+                class="progress-fill"
+                id="progressBar"
+                data-score="{{ match_percentage }}">
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- Skills -->
+
+    <div class="card">
+
+        <div class="card-title">
+            🛠 Detected Skills
+        </div>
+
+        {% if skills %}
+
+        <div class="chips">
+
+            {% for skill in skills %}
+
+            <span class="chip">
+
+                {{ skill }}
+
+            </span>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <p class="no-skills">
+
+            No technical skills detected.
+
+        </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- Matched Skills -->
+
+    {% if matched_skills %}
+
+    <div class="card">
+
+        <div class="card-title">
+
+            ✅ Matched Skills
+
+        </div>
+
+        <div class="chips">
+
+            {% for skill in matched_skills %}
+
+            <span class="chip">
+
+                {{ skill }}
+
+            </span>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- Missing Skills -->
+
+    {% if missing_skills %}
+
+    <div class="card">
+
+        <div class="card-title">
+
+            ❌ Missing Skills
+
+        </div>
+
+        <div class="chips">
+
+            {% for skill in missing_skills %}
+
+            <span
+                class="chip"
+                style="background:#fee2e2;color:#dc2626;">
+
+                {{ skill }}
+
+            </span>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- Smart Feedback -->
+
+    <div class="card">
+
+        <div class="card-title">
+
+            🤖 Smart AI Feedback
+
+        </div>
+
+        <div class="checklist">
+
+            {% for item in checkpoints %}
+
+            <div class="check-item">
+
+                <div class="check-icon ok">
+
+                    ✓
+
+                </div>
+
+                <span>
+
+                    {{ item }}
+
+                </span>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+    <!-- Back -->
+
+    <div>
+        <div style="margin-top:20px; text-align:center;">
+
+    <a href="/download-report" class="download-btn">
+        📄 Download ATS Report
+    </a>
+
+    <br><br>
+
+    <a href="/" class="back-link">
+        ⬅ Analyze Another Resume
+    </a>
+
+</div>
+
+
+    <a href="/download-report" class="download-btn">
+        📄 Download ATS Report
+    </a>
+
+</div>
+
+            ⬅ Analyze Another Resume
+
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+window.onload = function(){
+
+    let bar = document.getElementById("progressBar");
+
+    if(bar){
+
+        let score = bar.dataset.score;
+
+        setTimeout(function(){
+
+            bar.style.width = score + "%";
+
+        },300);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
